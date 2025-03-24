@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task Manager</title>
+</head>
+<body>
+    <h1>Task Manager</h1>
+    <input type="text" id="task-input" placeholder="Enter a new task">
+    <button id="add-task-btn">Add Task</button>
+    <ul id="adding-task" class="adding-task"></ul>
+
+    <script>
+            const taskInput = document.getElementById('task-input');
+            const addTaskBtn = document.getElementById('add-task-btn');
+            const taskList = document.getElementById('adding-task');
+
+            addTaskBtn.addEventListener('click', function() {
+                const taskText = taskInput.value.trim();
+                if (taskText !== '') {
+                    const taskItem = document.createElement('li');
+                    taskItem.textContent = taskText;
+
+                    const deleteBtn = document.createElement('button');
+                    deleteBtn.className = 'delete-btn';
+                    deleteBtn.textContent = 'Delete';
+                    deleteBtn.addEventListener('click', function() {
+                        taskList.removeChild(taskItem);
+                    });
+
+                    taskItem.appendChild(deleteBtn);
+                    taskList.appendChild(taskItem);
+                    taskInput.value = '';
+                }
+            });
+    </script>
+</body>
+</html>
